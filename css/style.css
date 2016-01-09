@@ -1,0 +1,15 @@
+#main-section {
+	padding: 50px;
+	width: 85%;
+
+	position: absolute;
+	top: 0;
+	right: 0;
+
+}
+
+#mainImg {
+	margin: 0 auto;
+	max-width: 100%;
+	max-height: 100%;
+}
