@@ -15,8 +15,9 @@ function createRows(numRows, numCells, galleryObject){
 	var rowString = '';
 	var rowStart = '<div class="row photorow">';
 	var divEnd = '</div>';
-	var colStartOne = '<div class="col-md-3 photocell" id="cell-';
-	var colStartTwo = '">';
+	var colStartOne = '<div class="col-md-3 photocell" ';
+	var colStartTwo = 'id="cell-';
+	var colStartThree = '">';
 	var imgString = '';
 
 	for(i=0; i<numRows; i++){
@@ -24,10 +25,13 @@ function createRows(numRows, numCells, galleryObject){
 		for(j=0; j<4; j++){
 
 			imgString = createImgString(count, galleryObject);
-			
+			clickString = createClickString(count);
+
 			rowString += colStartOne;
-			rowString += '' + count;
+			rowString += clickString;
 			rowString += colStartTwo;
+			rowString += '' + count;
+			rowString += colStartThree;
 			rowString += imgString;
 			rowString += divEnd;
 			
@@ -41,6 +45,13 @@ function createRows(numRows, numCells, galleryObject){
 	}
 
 	$('#main-section').html(rowString);
+}
+
+function createClickString(count) {
+	var clickStart = 'onclick="initializeGallery(';
+	var clickEnd = ')" ';
+
+	return clickStart + count + clickEnd;
 }
 
 function createImgString(count, galleryObject) {
