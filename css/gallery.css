@@ -47,6 +47,10 @@
 	position: absolute;
 }
 
+#loader {
+	display: none;
+}
+
 #right {
 	padding: 0;
 	margin: 0;

@@ -12,6 +12,7 @@
 
 	<!--import jquery-->
 	<script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+	<script type="text/javascript" src="js/jquery.preload.js"></script>
 </head>
 
 <body>
@@ -28,6 +29,16 @@
 <script>
 
 $( '#sidebar-wrapper' ).load("template-sidebar.html #border-right, #sidebar");
+
+$( document ).ready(function() {
+	$.getJSON('/js/json/colombiagrid.json', function(gallObj){
+		var sourceArray = [];
+		for(i=0; i<Object.keys(gallObj.photos).length; i++){
+			sourceArray.push(gallObj.photos[i].source);
+		}
+		$.preload(sourceArray);
+	});
+});
 
 </script>
 

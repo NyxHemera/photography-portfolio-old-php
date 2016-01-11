@@ -1,10 +1,13 @@
 var currentNum = 0;
 var jsonSource = '';
+var first = true;
+var pageName = '';
 
 function initializeGallery(photoNum) {
 	currentNum = photoNum;
-	$( '#wrapper' ).load("template-gallery.html #gallery-wrapper");
-	loadGallery();
+	$( '#wrapper' ).load("template-gallery.html #gallery-wrapper", function(){
+		loadGallery();
+	});
 }
 
 function loadGallery() {
@@ -13,15 +16,21 @@ function loadGallery() {
 
 function setJsonSource(jsonName) {
 	jsonSource = "/js/json/" + jsonName + ".json";
+	pageName = 'colombia';
 }
 
 function updateImg(galleryObj) {
 	var source = getImgSource(galleryObj);
-	
-	$("#displayedImg").fadeTo(500,0,function(){
+	if(first){
+		$('#displayedImg').attr("src", source);
+		first = false;
+	}else{
+		$("#displayedImg").fadeTo(500,0,function(){
 		$("#displayedImg").attr("src", source);
 	});
 		$("#displayedImg").fadeTo(500,1,function(){});
+	}
+	
 		
 }
 
@@ -52,17 +61,21 @@ function fadeControls() {
 	$("#buttonFrame").fadeTo(500, 0, function(){});	
 }
 
-/*
-$("#right").on( "click", function() {
-	currentNum++;
-	loadGallery();
+function reloadGrid() {
+	var mainElements = "";
+	mainElements += '<div id="sidebar-wrapper"></div> ';
+	mainElements += '<div id="content-wrapper"> ';
+	mainElements += '<div id="main-section"></div> ';
+	mainElements += '</div>';
+	$('#wrapper').html(mainElements);
+	$( '#sidebar-wrapper' ).load("template-sidebar.html #sidebar");
+	var gridName = pageName + 'grid';
+	createPhotoGrid(gridName);
+}
+
+$(document).keyup(function(e) {
+     if (e.keyCode == 27) { // escape key maps to keycode `27`
+        $('#gallery-wrapper').remove();
+        reloadGrid();
+    }
 });
-$("#left").on( "click", function() {
-	currentNum--;
-	loadGallery();
-});
-$("#buttonFrame").on( "click", function() {
-	//fade controls		
-	$("#buttonFrame").fadeTo(500, 0, function(){});		
-});
-*/
