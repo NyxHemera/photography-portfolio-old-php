@@ -15,8 +15,8 @@ function loadGallery() {
 }
 
 function setJsonSource(jsonName) {
-	jsonSource = "/js/json/" + jsonName + ".json";
-	pageName = 'colombia';
+	jsonSource = "/js/json/" + jsonName + "gallery.json";
+	pageName = jsonName;
 }
 
 function updateImg(galleryObj) {
@@ -76,6 +76,19 @@ function reloadGrid() {
 $(document).keyup(function(e) {
      if (e.keyCode == 27) { // escape key maps to keycode `27`
         $('#gallery-wrapper').remove();
+        first = true;
         reloadGrid();
+    }
+});
+
+$(document).keyup(function(e) {
+     if (e.keyCode == 37) { // left key
+        left();
+    }
+});
+
+$(document).keyup(function(e) {
+     if (e.keyCode == 39) { // right key
+        right();
     }
 });

@@ -21,7 +21,7 @@
 	<div id="sidebar-wrapper"></div>
 	<div id="content-wrapper">
 		<div id="main-section">
-			<img id="mainImg" src="https://36ac30c13130509695cc52edff7cc9aaed02b916.googledrive.com/host/0B-hZ9xIoiYFbcXhQejBRLXR6NGc/mountain-background.jpg">
+			<img id="mainImg" src="media/gallery/colombia/IMG_0342_large.jpg">
 		</div>
 	</div>
 </div>
@@ -32,6 +32,20 @@ $( '#sidebar-wrapper' ).load("template-sidebar.html #border-right, #sidebar");
 
 $( document ).ready(function() {
 	$.getJSON('/js/json/colombiagrid.json', function(gallObj){
+		var sourceArray = [];
+		for(i=0; i<Object.keys(gallObj.photos).length; i++){
+			sourceArray.push(gallObj.photos[i].source);
+		}
+		$.preload(sourceArray);
+	});
+	$.getJSON('/js/json/hondurasgrid.json', function(gallObj){
+		var sourceArray = [];
+		for(i=0; i<Object.keys(gallObj.photos).length; i++){
+			sourceArray.push(gallObj.photos[i].source);
+		}
+		$.preload(sourceArray);
+	});
+	$.getJSON('/js/json/vegasgrid.json', function(gallObj){
 		var sourceArray = [];
 		for(i=0; i<Object.keys(gallObj.photos).length; i++){
 			sourceArray.push(gallObj.photos[i].source);

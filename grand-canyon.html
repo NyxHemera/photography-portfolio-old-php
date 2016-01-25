@@ -15,6 +15,7 @@
 
 	<!--import jquery-->
 	<script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+	<script type="text/javascript" src="js/jquery.preload.js"></script>
 
 	<!--import my js-->
 	<script src="js/photogrid.js"></script>
@@ -32,12 +33,21 @@
 	</div>
 </div>
 
-
 <script>
 
 $( '#sidebar-wrapper' ).load("template-sidebar.html #sidebar");
-createPhotoGrid('grand-canyongrid');
-setJsonSource('grand-canyongallery');
+createPhotoGrid('vegasgrid');
+setJsonSource('vegas');
+
+$( document ).ready(function() {
+	$.getJSON('/js/json/vegasgallery.json', function(gallObj){
+		var sourceArray = [];
+		for(i=0; i<Object.keys(gallObj.photos).length; i++){
+			sourceArray.push(gallObj.photos[i].source);
+		}
+		$.preload(sourceArray);
+	});
+});
 
 </script>
 

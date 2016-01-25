@@ -13,3 +13,14 @@
 .photorow {
 	margin-bottom: 10px;
 }
+
+@media (max-width: 992px){
+	.col-md-3 {
+		margin: 0 auto;
+	    margin-bottom: 1em;
+	    display: table;
+	}
+	.photorow {
+		margin: 0;
+	}
+}

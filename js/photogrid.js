@@ -45,6 +45,7 @@ function createRows(numRows, numCells, galleryObject){
 	}
 
 	$('#main-section').html(rowString);
+	$('#main-section').css('padding', '50px');
 }
 
 function createClickString(count) {
