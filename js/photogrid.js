@@ -5,47 +5,34 @@ function createPhotoGrid(collectionName) {
 
 function useGalleryObject(galleryObject) {
 	var numCells = Object.keys(galleryObject.photos).length;
-	var numRows = getNumRows(numCells);
+	//var numRows = getNumRows(numCells);
 	
-	createRows(numRows, numCells, galleryObject);
+	createRows(numCells, galleryObject);
 }
 
-function createRows(numRows, numCells, galleryObject){
-	var count=0;
-	var rowString = '';
-	var rowStart = '<div class="row photorow">';
+function createRows(numCells, galleryObject){
+	var cellString = '';
 	var divEnd = '</div>';
-	var colStartOne = '<div class="col-md-3 photocell" ';
-	var colStartTwo = 'id="cell-';
-	var colStartThree = '">';
+	var cellStartOne = '<div class="photocell" ';
+	var cellStartTwo = 'id="cell-';
+	var cellEnd = '">';
 	var imgString = '';
 
-	for(i=0; i<numRows; i++){
-		rowString += rowStart;
-		for(j=0; j<4; j++){
+	for(i=0; i<numCells; i++){
+		imgString = createImgString(i, galleryObject);
+		clickString = createClickString(i);
 
-			imgString = createImgString(count, galleryObject);
-			clickString = createClickString(count);
-
-			rowString += colStartOne;
-			rowString += clickString;
-			rowString += colStartTwo;
-			rowString += '' + count;
-			rowString += colStartThree;
-			rowString += imgString;
-			rowString += divEnd;
-			
-			count++;
-			if(count === numCells){
-				j=5;
-				i=numRows;
-			}
-		}
-		rowString += divEnd;
+		cellString += cellStartOne;
+		cellString += clickString;
+		cellString += cellStartTwo;
+		cellString += '' + i;
+		cellString += cellEnd;
+		cellString += imgString;
+		cellString += divEnd;
 	}
 
-	$('#main-section').html(rowString);
-	$('#main-section').css('padding', '50px');
+	$('#main-section').html(cellString);
+	//$('#main-section').css('padding', '50px');
 }
 
 function createClickString(count) {
