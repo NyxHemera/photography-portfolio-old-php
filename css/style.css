@@ -1,8 +1,16 @@
+body {
+	padding: 0;
+	margin: 0;
+}
+#content-wrapper {
+	flex: 17;
+}
+
 #main-section {
 	
-	width: 85%;
+	width: 100%;
 
-	position: absolute;
+	position: relative;
 	top: 0;
 	right: 0;
 	
@@ -10,9 +18,15 @@
 
 #mainImg {
 	margin: 0 auto;
-	max-height: 100vh;
+	margin: 1vh 3vw 1vh auto;
+	max-height: 98vh;
 	max-width: 100%;
 	right: 0;
-	padding: 15px 50px 15px 0;
 	position: absolute;
+}
+
+#wrapper {
+	display: flex;
+	justify-content: space-between;
+	flex-flow: row wrap;
 }

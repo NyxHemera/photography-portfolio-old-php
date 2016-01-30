@@ -2,10 +2,6 @@
 
 <head>
 	<title>Jordan Rust - Photographer</title>
-	<!--import font-awesome and bootstrap-->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-	<link rel='stylesheet prefetch' href='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'>
-
 	<!--import my css-->
 	<link rel="stylesheet" href="css/style.css">
 	<link rel="stylesheet" href="css/sidebar.css">
@@ -18,7 +14,9 @@
 <body>
 
 <div id="wrapper">
-	<div id="sidebar-wrapper"></div>
+	<div id="sidebar-wrapper">
+		<?php include 'template-sidebar.php'; ?>
+	</div>
 	<div id="content-wrapper">
 		<div id="main-section">
 			<img id="mainImg" src="media/gallery/colombia/IMG_0342_large.jpg">
@@ -27,8 +25,6 @@
 </div>
 
 <script>
-
-$( '#sidebar-wrapper' ).load("template-sidebar.html #border-right, #sidebar");
 
 $( document ).ready(function() {
 	$.getJSON('/js/json/colombiagrid.json', function(gallObj){

@@ -5,9 +5,7 @@ var pageName = '';
 
 function initializeGallery(photoNum) {
 	currentNum = photoNum;
-	$( '#wrapper' ).load("template-gallery.html #gallery-wrapper", function(){
-		loadGallery();
-	});
+	loadGallery();
 }
 
 function loadGallery() {
@@ -23,6 +21,8 @@ function updateImg(galleryObj) {
 	var source = getImgSource(galleryObj);
 	if(first){
 		$('#displayedImg').attr("src", source);
+		$('#gallery-wrapper').css('visibility', 'visible');
+		$('#gallery-wrapper').css('opacity', '1');
 		first = false;
 	}else{
 		$("#displayedImg").fadeTo(500,0,function(){
@@ -46,19 +46,13 @@ function getImgSource(galleryObj) {
 }
 
 function right() {
-	fadeControls();
 	currentNum++;
 	loadGallery();
 }
 
 function left() {
-	fadeControls();
 	currentNum--;
 	loadGallery();
-}
-
-function fadeControls() {
-	$("#buttonFrame").fadeTo(500, 0, function(){});	
 }
 
 function reloadGrid() {
@@ -68,16 +62,17 @@ function reloadGrid() {
 	mainElements += '<div id="main-section"></div> ';
 	mainElements += '</div>';
 	$('#wrapper').html(mainElements);
-	$( '#sidebar-wrapper' ).load("template-sidebar.html #sidebar");
+	$( '#sidebar-wrapper' ).load("template-sidebar.php #sidebar");
 	var gridName = pageName + 'grid';
 	createPhotoGrid(gridName);
 }
 
 $(document).keyup(function(e) {
      if (e.keyCode == 27) { // escape key maps to keycode `27`
-        $('#gallery-wrapper').remove();
+        $('#gallery-wrapper').css('opacity', '0');
+        setTimeout(function(){$('#gallery-wrapper').css("visibility", "hidden");}, 500);
         first = true;
-        reloadGrid();
+        //reloadGrid();
     }
 });
 
@@ -91,4 +86,18 @@ $(document).keyup(function(e) {
      if (e.keyCode == 39) { // right key
         right();
     }
+});
+
+
+
+$(document).on('pageinit', function(event){
+   $('#gallery-wrapper').on("swipeleft",function(){
+	  right();
+	});
+
+   $('#gallery-wrapper').on("swiperight",function(){
+	console.log("swiped right");
+	  left();
+	});
+
 });

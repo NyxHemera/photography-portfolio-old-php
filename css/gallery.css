@@ -32,20 +32,20 @@
 }
 
 #gallery-wrapper {
-	position: relative;
+	position: fixed;
 	padding: 0;
 	margin: 0 auto;
 	z-index: 2;
-
-	width: auto;
-	height: auto;
-	max-height: 100vh;
-
-	display: inline-block;
-	
-	left: 50%;
-    transform: translateX(-50%);
+	visibility: hidden;
+	opacity: 0;
+	display: flex;
+	min-width: 100%;
+	min-height: 100vh;
+	flex-flow: row nowrap;
+	justify-content: center;
+	align-content: center;
 	background-color: white;
+	transition: visibility 0s, opacity 0.5s linear;
 }
 
 #left {

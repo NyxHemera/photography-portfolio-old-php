@@ -1,17 +1,11 @@
 <!DOCTYPE: html>
 
 <head>
-	<title>Colombia</title>
-
-	<!--import font-awesome and bootstrap-->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-	<link rel='stylesheet prefetch' href='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'>
-
+	<title>Honduras</title>
 	<!--import my css-->
 	<link rel="stylesheet" href="css/style.css">
 	<link rel="stylesheet" href="css/photogrid.css">
 	<link rel="stylesheet" href="css/gallery.css">
-	<link rel="stylesheet" href="css/sidebar.css">
 
 	<!--import jquery-->
 	<script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
@@ -25,7 +19,10 @@
 <body>
 
 <div id="wrapper">
-	<div id="sidebar-wrapper"></div>
+	<?php include 'template-gallery.php'; ?>
+	<div id="sidebar-wrapper">
+		<?php include 'template-sidebar.php'; ?>
+	</div>
 	<div id="content-wrapper">
 		<div id="main-section">
 			
@@ -34,13 +31,11 @@
 </div>
 
 <script>
-
-$( '#sidebar-wrapper' ).load("template-sidebar.html #sidebar");
-createPhotoGrid('colombiagrid');
-setJsonSource('colombia');
+createPhotoGrid('hondurasgrid');
+setJsonSource('honduras');
 
 $( document ).ready(function() {
-	$.getJSON('/js/json/colombiagallery.json', function(gallObj){
+	$.getJSON('/js/json/hondurasgallery.json', function(gallObj){
 		var sourceArray = [];
 		for(i=0; i<Object.keys(gallObj.photos).length; i++){
 			sourceArray.push(gallObj.photos[i].source);
