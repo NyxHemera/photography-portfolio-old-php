@@ -7,10 +7,10 @@
 
 .photocell {
 	flex: 1 1 300px;
-	margin: 1.5vh;
+	padding: 1.5vh;
 	max-width: 450px;
 	max-height: 300px;
-
+	background: white;
 }
 
 #main-section {

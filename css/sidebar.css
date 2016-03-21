@@ -5,23 +5,108 @@ a {
 #name {
 	margin: 30px 0px 30px 0px;
 	padding: 0;
+	max-width: 15vw;
+	font-size: 2.5vw;
+	font-weight: bold;
+}
 
-	font-size: 2.3em;
+#name-nav {
+	margin: 30px 0px 30px 0px;
+	padding: 0;
+	max-width: 12em;
+	font-size: 2.5vw;
 	font-weight: bold;
 }
 
 #sidebar {
 	padding-left: 10px;
-	width: 15vw;
+	width: 100%;
 	height: 100vh;
-
+	background: white;
 	position: fixed;
 	top: 0;
 	left: 0;
+	z-index: 3;
 }
 
 #sidebar-wrapper {
 	flex: 3;
+	height: 100%;
+	z-index: 3;
+	background: white;
+}
+
+.hider {
+	margin: 0;
+	padding: 0;
+	background: white;
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	top: 0;
+	right: 0;
+	left: 8.1vw;
+	bottom: 0;
+	z-index: 1;
+}
+
+.navigation {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	background: white;
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	top: 0;
+	right: 0;
+	left: 8.1vw;
+	bottom: 0;
+	z-index: 0;
+	opacity: 0;
+}
+
+.navigation > a > li {
+	display: flex;
+	flex-flow: column;
+	justify-content: center;
+	align-items: flex-start;
+	text-align: left;
+	min-height: 3em;
+	border-bottom: solid 1px #ababab;
+}
+
+.nav-trigger {
+	position: fixed;
+	clip: rect(0, 0, 0, 0);
+	display: none;
+}
+
+label[for="nav-trigger"] {
+	position: fixed;
+	text-align: center;
+	z-index: 4;
+	display: none;
+	font-size: 2em;
+	cursor: pointer;
+}
+/*nav-trigger must come before #content-wrapper and
+.navigation for these next two to work. */
+.nav-trigger:checked ~ #content-wrapper {
+    transform: translateX(12em);
+    box-shadow: 0 0 3px 5px rgba(0,0,0,0.3);
+}
+
+.nav-trigger:checked ~ .navigation {
+    opacity: 1;
+}
+
+.navigation {
+	transition: opacity 0.3s;
+}
+
+.nav-trigger + label, #content-wrapper {
+    transition: transform 0.3s;
 }
 
 .text-sidebar {
@@ -29,10 +114,32 @@ a {
 	padding: 0;
 
 	font-family: 'Lato', sans-serif;
-	font-size: 1.3em;
+	font-size: 1.3vw;
 	letter-spacing: -.2;
 
 	color: #323343;
 	text-transform: uppercase;
 	text-decoration: none;
+}
+
+@media screen and (max-width: 800px) {
+    .nav-trigger, label[for="nav-trigger"] {
+		display: inline;
+	}
+
+	#sidebar {
+		display: none;
+	}
+
+	#sidebar-wrapper {
+		flex: 1;
+	}
+
+	#mainImg {
+		margin: 1vh auto 1vh auto;
+	}
+
+	.text-sidebar {
+		font-size: 1em;
+	}
 }

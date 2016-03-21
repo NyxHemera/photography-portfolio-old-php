@@ -4,29 +4,30 @@ body {
 }
 #content-wrapper {
 	flex: 17;
+	display: flex;
+	background: white;
 }
 
 #main-section {
-	
 	width: 100%;
-
+	z-index: 3;
 	position: relative;
 	top: 0;
 	right: 0;
-	
+	background: white;
 }
 
 #mainImg {
 	margin: 0 auto;
-	margin: 1vh 3vw 1vh auto;
+	padding: 1vh 1% 1vh 1%;
 	max-height: 98vh;
-	max-width: 100%;
+	max-width: 98%;
 	right: 0;
-	position: absolute;
+	float: right;
 }
 
 #wrapper {
 	display: flex;
 	justify-content: space-between;
-	flex-flow: row wrap;
+	flex-flow: row nowrap;
 }

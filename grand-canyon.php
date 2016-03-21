@@ -23,6 +23,7 @@
 	<div id="sidebar-wrapper">
 		<?php include 'template-sidebar.php'; ?>
 	</div>
+	<?php include 'nav.php'; ?>
 	<div id="content-wrapper">
 		<div id="main-section">
 			

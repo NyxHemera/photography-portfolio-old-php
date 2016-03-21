@@ -17,6 +17,7 @@
 	<div id="sidebar-wrapper">
 		<?php include 'template-sidebar.php'; ?>
 	</div>
+	<?php include 'nav.php'; ?>
 	<div id="content-wrapper">
 		<div id="main-section">
 			<img id="mainImg" src="media/gallery/colombia/IMG_0342_large.jpg">
@@ -42,6 +43,20 @@ $( document ).ready(function() {
 		$.preload(sourceArray);
 	});
 	$.getJSON('/js/json/vegasgrid.json', function(gallObj){
+		var sourceArray = [];
+		for(i=0; i<Object.keys(gallObj.photos).length; i++){
+			sourceArray.push(gallObj.photos[i].source);
+		}
+		$.preload(sourceArray);
+	});
+	$.getJSON('/js/json/washingtongrid.json', function(gallObj){
+		var sourceArray = [];
+		for(i=0; i<Object.keys(gallObj.photos).length; i++){
+			sourceArray.push(gallObj.photos[i].source);
+		}
+		$.preload(sourceArray);
+	});
+	$.getJSON('/js/json/anvikgrid.json', function(gallObj){
 		var sourceArray = [];
 		for(i=0; i<Object.keys(gallObj.photos).length; i++){
 			sourceArray.push(gallObj.photos[i].source);

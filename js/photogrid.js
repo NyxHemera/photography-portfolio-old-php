@@ -30,7 +30,7 @@ function createRows(numCells, galleryObject){
 		cellString += imgString;
 		cellString += divEnd;
 	}
-
+	cellString += '<br class="clear" />';
 	$('#main-section').html(cellString);
 	//$('#main-section').css('padding', '50px');
 }

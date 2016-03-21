@@ -1,7 +1,7 @@
 <!DOCTYPE: html>
 
 <head>
-	<title>Furman</title>
+	<title>Anvik, AK</title>
 	<!--import my css-->
 	<link rel="stylesheet" href="css/style.css">
 	<link rel="stylesheet" href="css/photogrid.css">
@@ -22,6 +22,7 @@
 	<div id="sidebar-wrapper">
 		<?php include 'template-sidebar.php'; ?>
 	</div>
+	<?php include 'nav.php'; ?>
 	<div id="content-wrapper">
 		<div id="main-section">
 			
@@ -31,8 +32,18 @@
 
 
 <script>
-createPhotoGrid('furmangrid');
-setJsonSource('furmangallery');
+createPhotoGrid('anvikgrid');
+setJsonSource('anvik');
+
+$( document ).ready(function() {
+	$.getJSON('/js/json/anvikgallery.json', function(gallObj){
+		var sourceArray = [];
+		for(i=0; i<Object.keys(gallObj.photos).length; i++){
+			sourceArray.push(gallObj.photos[i].source);
+		}
+		$.preload(sourceArray);
+	});
+});
 </script>
 
 </body>

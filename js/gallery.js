@@ -1,6 +1,7 @@
 var currentNum = 0;
 var jsonSource = '';
 var first = true;
+var even = true;
 var pageName = '';
 
 function initializeGallery(photoNum) {
@@ -20,18 +21,51 @@ function setJsonSource(jsonName) {
 function updateImg(galleryObj) {
 	var source = getImgSource(galleryObj);
 	if(first){
-		$('#displayedImg').attr("src", source);
+		if(even){
+			$('#even-img').css('background-image', 'url(' + source + ')');
+			setSize('#even-img', source);
+			$("#even-img").fadeTo(500,1,function(){});
+		}else {
+			$('#odd-img').css('background-image', 'url(' + source + ')');
+			setSize('#odd-img', source);
+			$("#odd-img").fadeTo(500,1,function(){});
+		}
 		$('#gallery-wrapper').css('visibility', 'visible');
 		$('#gallery-wrapper').css('opacity', '1');
 		first = false;
 	}else{
-		$("#displayedImg").fadeTo(500,0,function(){
-		$("#displayedImg").attr("src", source);
-	});
-		$("#displayedImg").fadeTo(500,1,function(){});
+		if(even){
+			$('#even-img').css('background-image', 'url(' + source + ')');
+			setSize('#even-img', source);
+			$("#even-img").fadeTo(500,1,function(){});
+			$("#odd-img").fadeTo(500,0,function(){});
+		}else {
+			$('#odd-img').css('background-image', 'url(' + source + ')');
+			setSize('#odd-img', source);
+			$("#odd-img").fadeTo(500,1,function(){});
+			$("#even-img").fadeTo(500,0,function(){});
+		}
 	}
 	
 		
+}
+
+function setSize(target, source) {
+	var img = new Image();
+	img.src = source;
+	console.log($('#gallery-wrapper').height());
+	img.onload = function() {
+		console.log($('#gallery-wrapper').height());
+		if( $('#gallery-wrapper').height() < img.height ) {
+			console.log("contain");
+			console.log(img.height);
+		    $(target).css('background-size','contain');
+		}else{
+			console.log("auto");
+			console.log(img.height);
+		    $(target).css('background-size','auto');
+		}
+	}
 }
 
 function getImgSource(galleryObj) {
@@ -41,7 +75,7 @@ function getImgSource(galleryObj) {
 	}else if(currentNum < 0){
 		currentNum = currentNum + numCells;
 	}
-
+	even = !even;
 	return galleryObj.photos[currentNum].source;
 }
 
@@ -72,7 +106,12 @@ $(document).keyup(function(e) {
         $('#gallery-wrapper').css('opacity', '0');
         setTimeout(function(){$('#gallery-wrapper').css("visibility", "hidden");}, 500);
         first = true;
-        //reloadGrid();
+        $("#even-img").fadeTo(500,0,function(){
+        	$('#even-img').css('background-image', 'none');
+        });
+        $("#odd-img").fadeTo(500,0,function(){
+        	$('#odd-img').css('background-image', 'none');
+        });
     }
 });
 
